@@ -4,8 +4,9 @@ Train a YOLOv5 model on a custom dataset.
 Models and datasets download automatically from the latest YOLOv5 release.
 
 Usage - Single-GPU training:
-    $ python train_pricetag.py --data pricetag.yaml --weights yolov5s.pt --img 640 --batch-size 1  # from pretrained (recommended)
-    $ python train_pricetag.py --data pricetag.yaml --weights '' --cfg yolov5s.yaml --img 640  # from scratch
+    $ python train.py --data pricetag.yaml --weights yolov5s.pt --img 640 --batch-size 1  # from pretrained (recommended)
+    $ python train.py --data pricetag.yaml --weights '' --cfg yolov5s.yaml --img 640  # from scratch
+    $ python train.py --data pricetag.yaml --weights yolov5x.pt --freeze 9 --optimizer Adam --img 640 --batch-size 1 --hyp data/hyps/hyp.scratch.yaml
 
 Usage - Multi-GPU DDP training:
     $ python -m torch.distributed.run --nproc_per_node 4 --master_port 1 train.py --data coco128.yaml --weights yolov5s.pt --img 640 --device 0,1,2,3
@@ -429,7 +430,7 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
 
 def parse_opt(known=False):
     parser = argparse.ArgumentParser()
-    parser.add_argument('--weights', type=str, default=ROOT / 'yolov5s.pt', help='initial weights path')
+    parser.add_argument('--weights', type=str, default='', help='initial weights path')
     parser.add_argument('--cfg', type=str, default='', help='model.yaml path')
     parser.add_argument('--data', type=str, default=ROOT / 'data/coco128.yaml', help='dataset.yaml path')
     parser.add_argument('--hyp', type=str, default=ROOT / 'data/hyps/hyp.scratch-low.yaml', help='hyperparameters path')
@@ -458,7 +459,7 @@ def parse_opt(known=False):
     parser.add_argument('--quad', action='store_true', help='quad dataloader')
     parser.add_argument('--cos-lr', action='store_true', help='cosine LR scheduler')
     parser.add_argument('--label-smoothing', type=float, default=0.0, help='Label smoothing epsilon')
-    parser.add_argument('--patience', type=int, default=100, help='EarlyStopping patience (epochs without improvement)')
+    parser.add_argument('--patience', type=int, default=10, help='EarlyStopping patience (epochs without improvement)')
     parser.add_argument('--freeze', nargs='+', type=int, default=[0], help='Freeze layers: backbone=10, first3=0 1 2')
     parser.add_argument('--save-period', type=int, default=-1, help='Save checkpoint every x epochs (disabled if < 1)')
     parser.add_argument('--seed', type=int, default=0, help='Global training seed')
