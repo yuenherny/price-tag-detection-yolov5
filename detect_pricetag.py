@@ -3,13 +3,15 @@
 Run YOLOv5 detection inference on images, videos, directories, globs, YouTube, webcam, streams, etc.
 
 Usage - sources:
-    $ python detect.py --weights yolov5s.pt --source 0                               # webcam
+    $ python detect_pricetag.py --weights yolov5s.pt --source 0                               # webcam
                                                      img.jpg                         # image
                                                      vid.mp4                         # video
                                                      path/                           # directory
                                                      'path/*.jpg'                    # glob
                                                      'https://youtu.be/Zgi9g1ksQHc'  # YouTube
                                                      'rtsp://example.com/media.mp4'  # RTSP, RTMP, HTTP stream
+    
+    $ python detect_pricetag.py --weights path/to/best_model.pt --source path/to/images
 
 Usage - formats:
     $ python detect.py --weights yolov5s.pt                 # PyTorch
