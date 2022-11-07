@@ -5,7 +5,9 @@ This repo is forked and modified from [Ultralytics's YOLOv5 Pytorch implementati
 ## How to use
 You can take the following steps to replicate the project:
 1. Clone this repo using Git Bash.
+
     `$ git clone https://github.com/yuenherny/price-tag-detection-yolov5.git`
+
 2. Create a virtual environment.
     ```
     $ cd price-tag-detection-yolov5
@@ -16,10 +18,14 @@ You can take the following steps to replicate the project:
     ```
 3. If you are using any existing datasets like COCO or Pascal VOC, please follow this [tutorial](https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data#3-train). I used [Label Studio](https://labelstud.io/) to label my own data. Put your custom data anywhere at the root as you need to specify the path to the data later.
 4. Start the training.
+
     `$ python train_pricetag.py --data pricetag.yaml --weights yolov5s.pt --img 640 --batch-size 1`
+
     **Note that batch size is 16 by default. You may change it to speed up the training process or to avoid memory issues.**
 5. Perform inference using the same data.
+
     `$ python detect_pricetag.py --weights path/to/best_model.pt --source path/to/images`
+
 6. You will get some output in the console.
     ```
     ...
