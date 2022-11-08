@@ -12,7 +12,7 @@ Usage - sources:
                                                      'rtsp://example.com/media.mp4'  # RTSP, RTMP, HTTP stream
     
     $ python detect_pricetag.py --weights path/to/best_model.pt --source path/to/images
-    $ python detect_pricetag.py --weights runs/train/exp21/weights/best.pt --source datasets/pricetag/images
+eg. $ python detect_pricetag.py --weights runs/train/exp22/weights/best.pt --source datasets/pricetag/images
 
 Usage - formats:
     $ python detect.py --weights yolov5s.pt                 # PyTorch
